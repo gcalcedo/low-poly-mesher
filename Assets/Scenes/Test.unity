@@ -178,7 +178,7 @@ MonoBehaviour:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
         size: 4
-        height: 50
+        height: 6
 --- !u!23 &209496621
 MeshRenderer:
   m_ObjectHideFlags: 0
