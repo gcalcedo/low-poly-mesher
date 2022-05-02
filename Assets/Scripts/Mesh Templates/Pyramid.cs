@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -13,13 +14,17 @@ public class Pyramid : MeshTemplate
         this.height = height;
     }
 
-    public override PointSet Generate()
+    public override IEnumerable<VertexData> Generate()
     {
-        PointSet ps = PointSet.Build(
-            basis.Copy()
-            );
-        ps.Set.Add(new Vector3(0, height, 0));
+        //VertexData ps = VertexData.Build(
+        //    basis.Copy()
+        //    );
+        //ps.Set.Add(new Vector3(0, height, 0));
 
-        return ps;
+        //return ps;
+        return VertexData.Build(
+            basis.Copy(),
+            new Point(new Vector3(0, height, 0))
+            );
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -20,7 +21,7 @@ public class Rock : MeshTemplate
         this.height = height;
     }
 
-    public override PointSet Generate()
+    public override IEnumerable<VertexData> Generate()
     {
         magnitude = height > size ? (int)(height / size) * 4 : (int)(size / height) * 2;
         order = 12;
@@ -28,7 +29,7 @@ public class Rock : MeshTemplate
         orderStep = order / magnitude;
         heightStep = height / magnitude;
 
-        return PointSet.Build(BuildRock());
+        return VertexData.Build(BuildRock() );
     }
 
     private MeshTemplate[] BuildRock()

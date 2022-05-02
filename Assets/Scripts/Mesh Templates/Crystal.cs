@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -13,9 +14,9 @@ public class Crystal : MeshTemplate
         this.height = height;
     }
 
-    public override PointSet Generate()
+    public override IEnumerable<VertexData> Generate()
     {
-        return PointSet.Build(
+        return VertexData.Build(
             basis.Copy()
                 .Mod(new Scale(new Vector3(0.7f, 0, 0.7f))),
             basis.Copy()

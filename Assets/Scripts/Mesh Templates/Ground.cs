@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 [System.Serializable]
 [TemplatePath("Nature", typeof(Ground))]
 public class Ground : MeshTemplate
@@ -13,9 +15,9 @@ public class Ground : MeshTemplate
         this.resolution = resolution;
     }
 
-    public override PointSet Generate()
+    public override IEnumerable<VertexData> Generate()
     {
-        return PointSet.Build(
+        return VertexData.Build(
                 new Plane(sizeX, sizeZ, resolution)
                     .Mod(new NoisePosition(5, 1, 5))
             );

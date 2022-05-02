@@ -11,17 +11,23 @@ public class MeshData
     /// <summary>
     /// The vertices of the mesh.
     /// </summary>
-    public Vector3[] Vertices { get; private set; }
+    public List<Vector3> Vertices { get; private set; }
 
     /// <summary>
     /// The indices of the vertices that make up the triangles of the mesh.
     /// </summary>
-    public int[] Triangles { get; private set; }
+    public List<int> Triangles { get; private set; }
 
-    public MeshData(Vector3[] vertices, int[] triangles)
+    public MeshData()
     {
-        Vertices = vertices;
-        Triangles = triangles;
+        Vertices = new List<Vector3>();
+        Triangles = new List<int>();
+    }
+
+    public MeshData(IEnumerable<Vector3> vertices, IEnumerable<int> triangles)
+    {
+        Vertices = new List<Vector3>(vertices);
+        Triangles = new List<int>(triangles);
     }
 
     /// <summary>
@@ -30,12 +36,14 @@ public class MeshData
     /// </summary>
     public bool HasInwardFaces()
     {
+        if (Vertices.Count < 3) return false;
+
         Vector3 centerPoint = Vector3.zero;
-        foreach(Vector3 v in Vertices)
+        foreach (Vector3 v in Vertices)
         {
             centerPoint += v;
         }
-        centerPoint /= Vertices.Length;
+        centerPoint /= Vertices.Count;
 
         Vector3 p0 = Vertices[Triangles[0]];
         Vector3 p1 = Vertices[Triangles[1]];
@@ -55,6 +63,17 @@ public class MeshData
     /// </summary>
     public void FlipFaces()
     {
-        Triangles = Triangles.Reverse().ToArray();
+        Triangles.Reverse();
+    }
+
+    public void Add(MeshData md)
+    {
+        Vertices.AddRange(md.Vertices);
+
+        IEnumerable<int> triangles = Enumerable.Range(Triangles.Count, md.Triangles.Count);
+        if (md.HasInwardFaces()) {
+            triangles = triangles.Reverse();
+        }
+        Triangles.AddRange(triangles);
     }
 }

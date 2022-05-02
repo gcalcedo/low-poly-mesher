@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -22,16 +23,15 @@ public class Line : MeshTemplate
         distanceStep = (to - from) / (order - 1);
     }
 
-    public override PointSet Generate()
+    public override IEnumerable<VertexData> Generate()
     {
-        PointSet ps = new PointSet();
+        MeshTemplate[] points = new MeshTemplate[order];
         Vector3 point = from;
         for(int i = 0; i < order; i++)
         {
-            ps.Set.Add(point);
+            points[i] = new Point(point);
             point += distanceStep;
         }
-
-        return ps;
+        return VertexData.Build(points);
     }
 }

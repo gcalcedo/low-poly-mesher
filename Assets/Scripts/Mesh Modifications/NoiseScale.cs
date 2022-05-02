@@ -13,9 +13,9 @@ public class NoiseScale : MeshModification
     /// <param name="strength">Strength of noise on every axis.</param>
     public NoiseScale(float strength)
     {
-        strengthX = strength;
-        strengthY = strength;
-        strengthZ = strength;
+        strengthX = UnityEngine.Random.Range(1 - strength, 1 + strength);
+        strengthY = UnityEngine.Random.Range(1 - strength, 1 + strength);
+        strengthZ = UnityEngine.Random.Range(1 - strength, 1 + strength);
     }
 
     /// <summary>
@@ -27,17 +27,13 @@ public class NoiseScale : MeshModification
     /// <param name="strengthZ">Strength of noise on the Z axis.</param>
     public NoiseScale(float strengthX, float strengthY, float strengthZ)
     {
-        this.strengthX = strengthX;
-        this.strengthY = strengthY;
-        this.strengthZ = strengthZ;
+        this.strengthX = UnityEngine.Random.Range(1 - strengthX, 1 + strengthX);
+        this.strengthY = UnityEngine.Random.Range(1 - strengthY, 1 + strengthY);
+        this.strengthZ = UnityEngine.Random.Range(1 - strengthZ, 1 + strengthZ);
     }
 
     public override Func<Vector3, Vector3> GetModAction()
     {
-        return p => new Vector3(
-            p.x * UnityEngine.Random.Range(1 - strengthX, 1 + strengthX),
-            p.y * UnityEngine.Random.Range(1 - strengthY, 1 + strengthY),
-            p.z * UnityEngine.Random.Range(1 - strengthZ, 1 + strengthZ)
-            );
+        return new Scale(new Vector3(strengthX, strengthY, strengthZ)).GetModAction();
     }
 }

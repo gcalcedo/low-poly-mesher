@@ -9,6 +9,8 @@ using UnityEngine;
 /// </summary>
 public class MeshTemplate
 {
+    public bool Isolated { get; private set; }
+
     private class TemplateCopy : MeshTemplate
     {
         private readonly MeshTemplate template;
@@ -16,9 +18,10 @@ public class MeshTemplate
         public TemplateCopy(MeshTemplate template)
         {
             this.template = template;
+            this.mods = new List<MeshModification>(template.Mods);
         }
 
-        public override PointSet Generate()
+        public override IEnumerable<VertexData> Generate()
         {
             return template.Generate();
         }
@@ -36,12 +39,12 @@ public class MeshTemplate
     }
 
     /// <summary>
-    /// Defines the <see cref="PointSet"/> of this <see cref="MeshTemplate"/>.
+    /// Defines the <see cref="VertexData"/> of this <see cref="MeshTemplate"/>.
     /// </summary>
-    public virtual PointSet Generate() { return new PointSet(); }
+    public virtual IEnumerable<VertexData> Generate() { return new List<VertexData>(); }
 
     /// <summary>
-    /// Adds a <see cref="MeshModification"/> to be applied to the generated <see cref="PointSet"/>.
+    /// Adds a <see cref="MeshModification"/> to be applied to the generated <see cref="VertexData"/>.
     /// </summary>
     /// <param name="modification"></param>
     /// <returns>A self reference to this <see cref="MeshTemplate"/>.</returns>
@@ -54,5 +57,11 @@ public class MeshTemplate
     public MeshTemplate Copy()
     {
         return new TemplateCopy(this);
+    }
+
+    public MeshTemplate Isolate()
+    {
+        Isolated = true;
+        return this;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -21,9 +22,9 @@ public class Box : MeshTemplate
         this.sizeZ = sizeZ;
     }
 
-    public override PointSet Generate()
+    public override IEnumerable<VertexData> Generate()
     {
-        return PointSet.Build(
+        return VertexData.Build(
             new Plane(sizeX, sizeZ),
             new Plane(sizeX, sizeZ)
                 .Mod(new Translation(new Vector3(0, sizeY, 0)))

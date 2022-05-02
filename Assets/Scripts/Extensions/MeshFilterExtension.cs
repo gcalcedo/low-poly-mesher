@@ -10,8 +10,8 @@ public static class MeshFilterExtension
     public static void LoadMeshData(this MeshFilter filter, MeshData meshData)
     {
         filter.mesh.Clear();
-        filter.mesh.vertices = meshData.Vertices;
-        filter.mesh.triangles = meshData.Triangles;
+        filter.mesh.vertices = meshData.Vertices.ToArray();
+        filter.mesh.triangles = meshData.Triangles.ToArray();
         filter.mesh.RecalculateNormals();
     }
 }

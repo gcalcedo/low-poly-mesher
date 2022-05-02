@@ -28,8 +28,7 @@ public class MeshGenerator : MonoBehaviour
 
     public async void GenerateMesh()
     {
-        //MeshData md = await MeshBuilder.BuildMeshAsync(template, gameObject);
-        MeshData md = await MeshBuilder.BuildMeshAsyncWithStream(template);
+        MeshData md = await MeshBuilder.BuildMeshData(template);
         GetComponent<MeshFilter>().LoadMeshData(md);
     }
 

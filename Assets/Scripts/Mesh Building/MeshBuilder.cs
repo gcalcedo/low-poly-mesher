@@ -7,36 +7,18 @@ using UnityEngine;
 
 public static class MeshBuilder
 {
-    public static async Task<MeshData> BuildMeshAsync(MeshTemplate template, GameObject target)
+    public static async Task<MeshData> BuildMeshData(MeshTemplate template)
     {
-        PointSet pointSet = PointSet.Build(template);
-
-        await PolyIO.ToXYZ(pointSet, target);
-
-        Process mesher = new Process();
-        mesher.StartInfo.FileName = "mesher";
-        mesher.StartInfo.Arguments = target.GetInstanceID() + ".xyz";
-        mesher.StartInfo.WorkingDirectory = Application.persistentDataPath;
-        mesher.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-        mesher.Start();
-        await mesher.WaitForExitAsync();
-
-        MeshData md = await PolyIO.FromOFF(target);
-
-        //File.Delete(Application.persistentDataPath + "/" + target.GetInstanceID() + ".xyz");
-        //File.Delete(Application.persistentDataPath + "/" + target.GetInstanceID() + ".off");
-
-        if (md.HasInwardFaces())
+        MeshData md = new MeshData();
+        foreach(VertexData vd in VertexData.Build(template))
         {
-            md.FlipFaces();
+            md.Add(await BuildMeshAsync(vd));
         }
-
         return md;
     }
 
-    public static async Task<MeshData> BuildMeshAsyncWithStream(MeshTemplate template)
+    private static async Task<MeshData> BuildMeshAsync(VertexData pointSet)
     {
-        PointSet pointSet = PointSet.Build(template);
         List<string> stringPointSet = PolyIO.String(pointSet);
         List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();
@@ -87,11 +69,6 @@ public static class MeshBuilder
         }
 
         MeshData md = new MeshData(fullVertices.ToArray(), Enumerable.Range(0, triangles.Count).ToArray());
-
-        if (md.HasInwardFaces())
-        {
-            md.FlipFaces();
-        }
 
         return md;
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -30,9 +31,9 @@ public class PolyBox : MeshTemplate
         this.height = height;
     }
 
-    public override PointSet Generate()
+    public override IEnumerable<VertexData> Generate()
     {
-        return PointSet.Build(
+        return VertexData.Build(
             basis.Copy(),
             basis.Copy()
                 .Mod(new Translation(new Vector3(0, height, 0)))

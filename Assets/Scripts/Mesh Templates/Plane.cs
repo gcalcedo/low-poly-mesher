@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -21,7 +22,7 @@ public class Plane : MeshTemplate
         this.resolution = resolution;
     }
 
-    override public PointSet Generate()
+    override public IEnumerable<VertexData> Generate()
     {
         Vector3 startCorner = new Vector3(-sizeX / 2, 0, -sizeZ / 2);
         float stepZ = sizeZ / (resolution - 1);
@@ -33,6 +34,6 @@ public class Plane : MeshTemplate
             startCorner += new Vector3(0, 0, stepZ);
         }
 
-        return PointSet.Build(plane);
+        return VertexData.Build(plane);
     }
 }

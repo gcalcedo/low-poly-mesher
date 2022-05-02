@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 public static class PolyIO
 {
-    public static List<string> String(PointSet pointSet)
+    public static List<string> String(VertexData pointSet)
     {
         List<string> pointSetString = new List<string>();
         foreach(Vector3 v in pointSet.Set)
@@ -19,7 +19,7 @@ public static class PolyIO
         return pointSetString;
     }
 
-    public static async Task ToXYZ(PointSet pointSet, GameObject target)
+    public static async Task ToXYZ(VertexData pointSet, GameObject target)
     {
         using StreamWriter file = new StreamWriter(Application.persistentDataPath + "/" + target.GetInstanceID() + ".xyz");
         foreach (Vector3 v in pointSet.Set)

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class TemplateGroup : MeshTemplate
 {
     private readonly MeshTemplate[] group;
@@ -11,8 +13,8 @@ public class TemplateGroup : MeshTemplate
         this.group = group;
     }
 
-    public override PointSet Generate()
+    public override IEnumerable<VertexData> Generate()
     {
-        return PointSet.Build(group);
+        return VertexData.Build(group);
     }
 }
