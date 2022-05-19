@@ -24,35 +24,24 @@ public class MeshGenerator : MonoBehaviour
     }
     private void Update()
     {
+        if (md.IsAnimated)
+        {
+            Debug.Log("ANIMATED");
+            mesh.SetVertices(md.Vertices);
+            mesh.RecalculateNormals();
+        }
+
         if (Input.GetKeyDown(KeyCode.T))
         {
             GenerateMesh();
         }
-
-        mesh.MarkDynamic();
-        mesh.SetVertices(md.Vertices);
-        mesh.RecalculateNormals();
     }
 
     public async void GenerateMesh()
     {
         md = await MeshBuilder.BuildMeshData(template);
+        Debug.Log(template.Mods.Count);
         mesh.LoadMeshData(md);
-
-
-        for (int i = 0; i < md.Vertices.Count; i++)
-        {
-            int vertexId = i;
-            DOTween.To(
-                () => md.Vertices[vertexId],
-                (v) => md.Vertices[vertexId] = v,
-                new Vector3(0, 2, 0),
-                2
-                )
-                .SetRelative()
-                .SetEase(Ease.InOutQuad)
-                .SetLoops(-1, LoopType.Yoyo);
-        }
     }
 
     public IEnumerable<Type> GetInheritedClasses(Type MyType)

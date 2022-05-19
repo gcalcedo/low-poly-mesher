@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 
 /// <summary>
 /// Represents relevant data for any 3D mesh.
@@ -18,16 +19,21 @@ public class MeshData
     /// </summary>
     public List<int> Triangles { get; private set; }
 
+    public bool IsAnimated { get { return !(Animation is null); } }
+    public MeshAnimation Animation { get; set; }
+
     public MeshData()
     {
         Vertices = new List<Vector3>();
         Triangles = new List<int>();
+        Animation = null;
     }
 
-    public MeshData(IEnumerable<Vector3> vertices, IEnumerable<int> triangles)
+    public MeshData(IEnumerable<Vector3> vertices, IEnumerable<int> triangles, MeshAnimation animation = null)
     {
         Vertices = new List<Vector3>(vertices);
         Triangles = new List<int>(triangles);
+        Animation = animation;
     }
 
     /// <summary>
@@ -66,7 +72,7 @@ public class MeshData
         Triangles.Reverse();
     }
 
-    public void Add(MeshData md)
+    public void Merge(MeshData md)
     {
         Vertices.AddRange(md.Vertices);
 
@@ -75,5 +81,22 @@ public class MeshData
             triangles = triangles.Reverse();
         }
         Triangles.AddRange(triangles);
+    }
+
+    public void LaunchAnimation()
+    {
+        for(int i = 0; i < Vertices.Count; i++)
+        {
+            int vertexID = i;
+            DOTween.To(
+               () => Vertices[vertexID],
+               (v) => Vertices[vertexID] = v,
+               Animation.target.GetModAction().Invoke(Vertices[vertexID]),
+               Animation.speed
+               )
+               .SetRelative()
+               .SetEase(Ease.InOutQuad)
+               .SetLoops(-1, LoopType.Yoyo);
+        }
     }
 }

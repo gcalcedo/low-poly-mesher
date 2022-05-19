@@ -9,26 +9,26 @@ using UnityEngine;
 /// </summary>
 public class MeshTemplate
 {
-    public bool Isolated { get; private set; }
-
     private class TemplateCopy : MeshTemplate
     {
         private readonly MeshTemplate template;
 
         public TemplateCopy(MeshTemplate template)
         {
+            Isolated = template.Isolated;
             this.template = template;
-            this.mods = new List<MeshModification>(template.Mods);
+            mods = new List<MeshModification>(template.Mods);
         }
 
         public override IEnumerable<VertexData> Generate()
         {
-            return template.Generate();
+            return template. Generate();
         }
     }
 
-    private ICollection<MeshModification> mods = new List<MeshModification>();
+    public bool Isolated { get; private set; }
 
+    private ICollection<MeshModification> mods = new List<MeshModification>();
     public ICollection<MeshModification> Mods
     {
         get
@@ -37,6 +37,9 @@ public class MeshTemplate
             return mods;
         }
     }
+
+    public MeshAnimation Animation;
+
 
     /// <summary>
     /// Defines the <see cref="VertexData"/> of this <see cref="MeshTemplate"/>.
@@ -51,6 +54,12 @@ public class MeshTemplate
     public MeshTemplate Mod(MeshModification modification)
     {
         mods.Add(modification);
+        return this;
+    }
+
+    public MeshTemplate Anim(MeshModification animation, float speed)
+    {
+        Animation = new MeshAnimation(animation, speed);
         return this;
     }
 

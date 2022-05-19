@@ -484,17 +484,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Box, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  templateAssemblyName: WaterBed, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Box, ns: , asm: Assembly-CSharp}
+      type: {class: WaterBed, ns: , asm: Assembly-CSharp}
       data:
-        sizeX: 20
-        sizeY: 7
-        sizeZ: 20
+        size: 100
+        resolution: 100
 --- !u!23 &1840855252
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -506,7 +506,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -515,7 +514,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5c6c916e42991834d9d811169ae43387, type: 2}
+  - {fileID: 2100000, guid: 6a5dc74af77aa664884583318726a3d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -552,13 +551,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840855250}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1 &2096969424
 GameObject:
   m_ObjectHideFlags: 0

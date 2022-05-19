@@ -12,7 +12,8 @@ public static class MeshBuilder
         MeshData md = new MeshData();
         foreach(VertexData vd in VertexData.Build(template))
         {
-            md.Add(await BuildMeshAsync(vd));
+            md.Merge(await BuildMeshAsync(vd));
+            md.Animation = template.Animation;
         }
         return md;
     }

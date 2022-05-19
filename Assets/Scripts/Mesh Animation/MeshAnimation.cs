@@ -3,7 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MeshAnimation
+public class MeshAnimation
 {
-    public abstract Func<Vector3, Vector3> Animate(float speed);
+    public MeshModification target;
+    public float speed;
+
+    public MeshAnimation(MeshModification target, float speed)
+    {
+        this.target = target;
+        this.speed = speed;
+    }
 }
