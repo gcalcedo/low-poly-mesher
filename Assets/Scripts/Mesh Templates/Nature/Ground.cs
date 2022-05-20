@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 [TemplatePath("Nature", typeof(Ground))]
@@ -17,9 +18,13 @@ public class Ground : MeshTemplate
 
     public override IEnumerable<VertexData> Generate()
     {
+        float size = Mathf.Max(sizeX, sizeZ);
+
         return VertexData.Build(
                 new Plane(sizeX, sizeZ, resolution)
-                    .Mod(new NoisePosition(5, 1, 5))
+                    .Mod(new NoisePosition(size / 100f, size / 400f, size / 100f)),
+                new Plane(sizeX, sizeZ, resolution)
+                    .Mod(Translation.Y(-size / 10f))
             );
     }
 }

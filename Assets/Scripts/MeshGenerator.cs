@@ -14,34 +14,39 @@ public class MeshGenerator : MonoBehaviour
     [SerializeReference] public MeshTemplate template;
 
     private Mesh mesh;
-    private MeshData md;
+    private MeshRenderer meshRenderer;
+    private IList<MeshData> meshData;
 
     private void Start()
     {
         mesh = GetComponent<MeshFilter>().mesh;
-        md = new MeshData();
+        meshRenderer = GetComponent<MeshRenderer>();
+        meshData = new List<MeshData>();
         GenerateMesh();
     }
     private void Update()
     {
-        if (md.IsAnimated)
-        {
-            Debug.Log("ANIMATED");
-            mesh.SetVertices(md.Vertices);
-            mesh.RecalculateNormals();
-        }
+        mesh.MarkDynamic(); 
+        mesh.UpdateMeshVertices((IList<MeshData>)meshData);
+        mesh.RecalculateNormals();
 
         if (Input.GetKeyDown(KeyCode.T))
         {
+            mesh.Clear();
             GenerateMesh();
         }
     }
 
     public async void GenerateMesh()
     {
-        md = await MeshBuilder.BuildMeshData(template);
-        Debug.Log(template.Mods.Count);
-        mesh.LoadMeshData(md);
+        meshData = (IList<MeshData>)await MeshBuilder.BuildMeshData(template);
+        mesh.LoadMeshData((IList<MeshData>)meshData);
+        meshRenderer.materials = Enumerable.Repeat(meshRenderer.materials[0], mesh.subMeshCount).ToArray();
+
+        foreach (MeshData md in meshData)
+        {
+            md.LaunchAnimation();
+        }
     }
 
     public IEnumerable<Type> GetInheritedClasses(Type MyType)

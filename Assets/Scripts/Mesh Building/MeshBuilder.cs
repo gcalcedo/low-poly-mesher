@@ -7,15 +7,14 @@ using UnityEngine;
 
 public static class MeshBuilder
 {
-    public static async Task<MeshData> BuildMeshData(MeshTemplate template)
+    public static async Task<ICollection<MeshData>> BuildMeshData(MeshTemplate template)
     {
-        MeshData md = new MeshData();
+        List<MeshData> meshes = new List<MeshData>();
         foreach(VertexData vd in VertexData.Build(template))
         {
-            md.Merge(await BuildMeshAsync(vd));
-            md.Animation = template.Animation;
+            meshes.Add(await BuildMeshAsync(vd));
         }
-        return md;
+        return meshes;
     }
 
     private static async Task<MeshData> BuildMeshAsync(VertexData pointSet)
@@ -71,6 +70,7 @@ public static class MeshBuilder
 
         MeshData md = new MeshData(fullVertices.ToArray(), Enumerable.Range(0, triangles.Count).ToArray());
 
+        md.Animation = pointSet.animation;
         return md;
     }
 }

@@ -39,6 +39,7 @@ public class Tree : MeshTemplate
                     .Mod(new Scale(new Vector3(2, 2, 2)))
                     .Mod(new NoiseScale(0.3f))
                     .Mod(new Rotation(Random.Range(0f, 360f), Vector3.up))
+                    .Anim(new CoordinateMod(10f), UnityEngine.Random.Range(2f, 3f))
             );
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class VertexData
 {
+    public MeshAnimation animation;
+
     /// <summary>
     /// Collection of vertices of this <see cref="VertexData"/>.
     /// </summary>
@@ -38,6 +40,8 @@ public class VertexData
             IEnumerable<VertexData> vds = ms.Generate();
             for (int i = 0; i < vds.Count(); i++)
             {
+                if (!(ms.Animation is null)) { vds.ElementAt(i).animation = ms.Animation; }
+
                 foreach (MeshModification mod in ms.Mods)
                 {
                     vds.ElementAt(i).Modify(mod);
@@ -45,6 +49,7 @@ public class VertexData
 
                 if (i == 0 && !ms.Isolated)
                 {
+                    build[0].animation = vds.ElementAt(i).animation;
                     build[0].Append(vds.ElementAt(i));
                 }
                 else
@@ -53,6 +58,7 @@ public class VertexData
                 }
             }
         }
+
         return build;
     }
 

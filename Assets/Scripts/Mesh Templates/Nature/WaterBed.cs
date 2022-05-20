@@ -6,21 +6,27 @@ using UnityEngine;
 [TemplatePath("Nature", typeof(WaterBed))]
 public class WaterBed : MeshTemplate
 {
-    public float size;
+    public float sizeX;
+    public float sizeZ;
     public int resolution;
 
-    public WaterBed(float size, int resolution)
+    public WaterBed(float sizeX, float sizeZ, int resolution)
     {
-        this.size = size;
+        this.sizeX = sizeX;
+        this.sizeZ = sizeZ;
         this.resolution = resolution;
     }
 
     public override IEnumerable<VertexData> Generate()
     {
+        float size = Mathf.Max(sizeX, sizeZ);
+
         return VertexData.Build(
-                new Plane(size, size, resolution)
-                    .Mod(new Translation(new Vector3(0, 2, 0)))
-                    .Anim(new NoisePosition(0, 2, 0), 2)
+                new Plane(sizeX, sizeZ, resolution)
+                    .Mod(Translation.Y(-size / 10f)),
+                new Plane(sizeX, sizeZ, resolution)
+                    .Mod(new NoisePosition(size / 50f, 0, size / 50f))
+                    .Anim(Translation.Y(size / 100f))
             );
     }
 }

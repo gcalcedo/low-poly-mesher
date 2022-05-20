@@ -37,6 +37,7 @@ public class Grass : MeshTemplate
             .Mod(new Rotation(Random.Range(20, 60), Vector3.left))
             .Mod(new Translation(new Vector3(0, 0, -Random.Range(0, height / 6f))))
             .Mod(new Rotation(Random.Range(0, 360), Vector3.up))
-            .Isolate();
+            .Isolate()
+            .Anim(new CoordinateMod(height));
     }
 }

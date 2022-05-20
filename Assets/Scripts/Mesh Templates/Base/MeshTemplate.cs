@@ -57,7 +57,7 @@ public class MeshTemplate
         return this;
     }
 
-    public MeshTemplate Anim(MeshModification animation, float speed)
+    public MeshTemplate Anim(MeshModification animation, float speed=-1)
     {
         Animation = new MeshAnimation(animation, speed);
         return this;

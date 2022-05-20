@@ -25,12 +25,17 @@ public class Plane : MeshTemplate
     override public IEnumerable<VertexData> Generate()
     {
         Vector3 startCorner = new Vector3(-sizeX / 2, 0, -sizeZ / 2);
-        float stepZ = sizeZ / (resolution - 1);
 
-        MeshTemplate[] plane = new MeshTemplate[resolution];
-        for (int i = 0; i < resolution; i++)
+        int resHigh = resolution;
+        int resLow = (int) Mathf.Min(sizeX, sizeZ) * resHigh / (int) Mathf.Max(sizeX, sizeZ);
+        int resX = Mathf.Max(2, sizeX > sizeZ ? resHigh : resLow);
+        int resZ = Mathf.Max(2, sizeZ > sizeX ? resHigh : resLow);
+
+        float stepZ = sizeZ / (resZ -1);
+        MeshTemplate[] plane = new MeshTemplate[resZ];
+        for (int i = 0; i < resZ; i++)
         {
-            plane[i] = new Line(startCorner, new Vector3(startCorner.x + sizeX, 0, startCorner.z), resolution);
+            plane[i] = new Line(startCorner, new Vector3(startCorner.x + sizeX, 0, startCorner.z), resX);
             startCorner += new Vector3(0, 0, stepZ);
         }
 
