@@ -20,6 +20,24 @@ public class Rotation : MeshModification
         this.axis = axis;
     }
 
+    /// <summary>
+    /// A rotation in the <b>X</b> axis.
+    /// </summary>
+    /// <param name="angle">Magnitude of the rotation.</param>
+    public static Rotation X(float angle) { return new Rotation(angle, Vector3.right); }
+
+    /// <summary>
+    /// A rotation in the <b>Y</b> axis.
+    /// </summary>
+    /// <param name="angle">Magnitude of the rotation.</param>
+    public static Rotation Y(float angle) { return new Rotation(angle, Vector3.up); }
+
+    /// <summary>
+    /// A rotation in the <b>Z</b> axis.
+    /// </summary>
+    /// <param name="angle">Magnitude of the rotation.</param>
+    public static Rotation Z(float angle) { return new Rotation(angle, Vector3.forward); }
+
     public override Func<Vector3, Vector3> GetModAction()
     {
         return (p) => Quaternion.AngleAxis(angle, axis) * p;

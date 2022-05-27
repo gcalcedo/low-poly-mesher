@@ -29,7 +29,7 @@ public class Rock : MeshTemplate
         orderStep = order / magnitude;
         heightStep = height / magnitude;
 
-        return VertexData.Build(BuildRock() );
+        return VertexData.Build(BuildRock());
     }
 
     private MeshTemplate[] BuildRock()
@@ -68,29 +68,28 @@ public class Rock : MeshTemplate
 
         return new TemplateGroup(
             new Polygon(
-                Random.Range(minOrder, maxOrder),
-                Random.Range(minSize, maxSize)
+                Seed.Range(minOrder, maxOrder),
+                Seed.Range(minSize, maxSize)
             )
-                .Mod(PlaneNoise(Random.Range(minNoiseScale, maxNoiseScale), noisePos))
-                .Mod(PlaneRotation(n == 0 ? 0 : Random.Range(minRot, maxRot)))
-                .Mod(new Translation(new Vector3(0, Random.Range(minHeight, maxHeight), 0)))
+                .Mod(PlaneNoise(Seed.Range(minNoiseScale, maxNoiseScale), noisePos))
+                .Mod(PlaneRotation(n == 0 ? 0 : Seed.Range(minRot, maxRot)))
+                .Mod(Translation.Y(Seed.Range(minHeight, maxHeight)))
             );
     }
 
     private MeshModification PlaneRotation(float angle)
     {
         return new ModGroup(
-            new Rotation(Random.Range(0, 360), Vector3.up),
-            new Rotation(Random.Range(-angle, angle), Vector3.forward),
-            new Rotation(Random.Range(-angle, angle), Vector3.right)
-            );
+            Rotation.Y(Seed.Range(0, 360)),
+            Rotation.Z(Seed.Range(-angle, angle)),
+            Rotation.X(Seed.Range(-angle, angle)));
     }
 
     private MeshModification PlaneNoise(float scale, float position)
     {
         return new ModGroup(
-            new NoiseScale(scale),
-            new NoisePosition(position)
+            new NoiseScale(scale, NoiseMode.STATIC),
+            new NoisePosition(position, NoiseMode.DYNAMIC)
             );
     }
 }

@@ -1,45 +1,70 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Noise for position in 3D space.
+/// </summary>
 public class NoisePosition : MeshModification
 {
-    private readonly float strengthX;
-    private readonly float strengthY;
-    private readonly float strengthZ;
+    private readonly NoiseMode mode;
+    private Vector3 noise;
 
     /// <summary>
-    /// Applies <paramref name="strength"/> amount of noise to the X, Y and Z position.
+    /// Noise for position in 3D space.
     /// </summary>
-    /// <param name="strength">Strength of noise on every axis.</param>
-    public NoisePosition(float strength)
+    /// <param name="noise">The noise for the position on each axis (X, Y, Z).</param>
+    public NoisePosition(Vector3 noise, NoiseMode mode)
     {
-        strengthX = strength;
-        strengthY = strength;
-        strengthZ = strength;
+        this.mode = mode;
+        if (mode == NoiseMode.STATIC)
+        {
+            this.noise = new Vector3(
+                Seed.Range(-noise.x, noise.x),
+                Seed.Range(-noise.y, noise.y),
+                Seed.Range(-noise.z, noise.z));
+        }
+        else
+        {
+            this.noise = noise;
+        }
     }
 
     /// <summary>
-    /// Applies <paramref name="strengthX"/>, <paramref name="strengthY"/> and <paramref name="strengthZ"/> 
-    /// amount of noise to the X, Y and Z position respectively.<br></br>
+    /// Noise for position in 3D space.
     /// </summary>
-    /// <param name="strengthX">Strength of noise on the X axis.</param>
-    /// <param name="strengthY">Strength of noise on the Y axis.</param>
-    /// <param name="strengthZ">Strength of noise on the Z axis.</param>
-    public NoisePosition(float strengthX, float strengthY, float strengthZ)
-    {
-        this.strengthX = strengthX;
-        this.strengthY = strengthY;
-        this.strengthZ = strengthZ;
-    }
+    /// <param name="noise">The noise for the position on every axis.</param>
+    public NoisePosition(float noise, NoiseMode mode) : this(new Vector3(noise, noise, noise), mode) { }
+
+    /// <summary>
+    /// Noise for position in the <b>X</b> axis.
+    /// </summary>
+    /// <param name="noise">The magnitude of the noise for the position.</param>
+    public static NoisePosition X(float noise, NoiseMode mode) { return new NoisePosition(new Vector3(noise, 0, 0), mode); }
+
+    /// <summary>
+    /// Noise for position in the <b>Y</b> axis.
+    /// </summary>
+    /// <param name="noise">The magnitude of the noise for the position.</param>
+    public static NoisePosition Y(float noise, NoiseMode mode) { return new NoisePosition(new Vector3(0, noise, 0), mode); }
+
+    /// <summary>
+    /// Noise for position in the <b>Z</b> axis.
+    /// </summary>
+    /// <param name="noise">The magnitude of the noise for the position.</param>
+    public static NoisePosition Z(float noise, NoiseMode mode) { return new NoisePosition(new Vector3(0, 0, noise), mode); }
 
     public override Func<Vector3, Vector3> GetModAction()
     {
-        return p => new Vector3(
-            p.x + UnityEngine.Random.Range(-strengthX, strengthX),
-            p.y + UnityEngine.Random.Range(-strengthY, strengthY),
-            p.z + UnityEngine.Random.Range(-strengthZ, strengthZ)
-            );
+        if (mode == NoiseMode.STATIC)
+        {
+            return new Translation(new Vector3(noise.x, noise.y, noise.z)).GetModAction();
+        }
+        else
+        {
+            return new Translation(new Vector3(
+                Seed.Range(-noise.x, noise.x),
+                Seed.Range(-noise.y, noise.y),
+                Seed.Range(-noise.z, noise.z))).GetModAction();
+        }
     }
 }

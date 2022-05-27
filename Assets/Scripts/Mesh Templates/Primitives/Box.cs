@@ -27,7 +27,7 @@ public class Box : MeshTemplate
         return VertexData.Build(
             new Plane(sizeX, sizeZ),
             new Plane(sizeX, sizeZ)
-                .Mod(new Translation(new Vector3(0, sizeY, 0)))
+                .Mod(Translation.Y(sizeY))
             );
     }
 }

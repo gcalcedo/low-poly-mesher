@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ public class WaterBed : MeshTemplate
                 new Plane(sizeX, sizeZ, resolution)
                     .Mod(Translation.Y(-size / 10f)),
                 new Plane(sizeX, sizeZ, resolution)
-                    .Mod(new NoisePosition(size / 50f, 0, size / 50f))
+                    .Mod(new NoisePosition(new Vector3(size / 50f, 0, size / 50f), NoiseMode.DYNAMIC))
                     .Anim(Translation.Y(size / 100f))
             );
     }

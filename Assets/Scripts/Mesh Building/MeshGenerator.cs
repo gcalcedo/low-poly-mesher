@@ -15,7 +15,7 @@ public class MeshGenerator : MonoBehaviour
 
     private Mesh mesh;
     private MeshRenderer meshRenderer;
-    private IList<MeshData> meshData;
+    private List<MeshData> meshData;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class MeshGenerator : MonoBehaviour
     private void Update()
     {
         mesh.MarkDynamic(); 
-        mesh.UpdateMeshVertices((IList<MeshData>)meshData);
+        mesh.UpdateMeshVertices(meshData);
         mesh.RecalculateNormals();
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -39,20 +39,15 @@ public class MeshGenerator : MonoBehaviour
 
     public async void GenerateMesh()
     {
-        meshData = (IList<MeshData>)await MeshBuilder.BuildMeshData(template);
-        mesh.LoadMeshData((IList<MeshData>)meshData);
+        meshData.ForEach(md => md.ClearAnimations());
+        meshData = (List<MeshData>)await MeshBuilder.BuildMeshData(template);
+        mesh.LoadMeshData(meshData);
         meshRenderer.materials = Enumerable.Repeat(meshRenderer.materials[0], mesh.subMeshCount).ToArray();
 
         foreach (MeshData md in meshData)
         {
             md.LaunchAnimation();
         }
-    }
-
-    public IEnumerable<Type> GetInheritedClasses(Type MyType)
-    {
-        return Assembly.GetAssembly(MyType).GetTypes().Where(TheType =>
-            TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(MyType));
     }
 }
 

@@ -27,7 +27,6 @@ public class MeshGeneratorEditor : Editor
 
         foreach(Type t in typeof(MeshTemplate).GetInheritedClasses())
         {
-            //Debug.Log(t.Name);
             TemplatePathAttribute templatePath = Attribute.GetCustomAttribute(t, typeof(TemplatePathAttribute)) as TemplatePathAttribute;
 
             if (templatePath is null) continue;

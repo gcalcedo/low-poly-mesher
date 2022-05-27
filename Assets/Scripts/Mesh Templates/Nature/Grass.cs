@@ -16,7 +16,6 @@ public class Grass : MeshTemplate
     public override IEnumerable<VertexData> Generate()
     {
         int leafCount = Random.Range(4, 8);
-        //leafCount = 4;
         MeshTemplate[] leafs = new MeshTemplate[leafCount];
 
         for (int i = 0; i < leafCount; i++)
@@ -33,10 +32,10 @@ public class Grass : MeshTemplate
         float sizeZ = height / Random.Range(4f, 6f);
 
         return new Pyramid(new Polygon(4, sizeX / 2), height)
-            .Mod(new Scale(new Vector3(1, 1, sizeZ / sizeX)))
-            .Mod(new Rotation(Random.Range(20, 60), Vector3.left))
-            .Mod(new Translation(new Vector3(0, 0, -Random.Range(0, height / 6f))))
-            .Mod(new Rotation(Random.Range(0, 360), Vector3.up))
+            .Mod(Scale.Z(sizeZ / sizeX))
+            .Mod(Rotation.X(Seed.Range(20, 60)))
+            .Mod(Translation.Z(height / 6f))
+            .Mod(Rotation.Y(Seed.Range(0, 360)))
             .Isolate()
             .Anim(new CoordinateMod(height));
     }

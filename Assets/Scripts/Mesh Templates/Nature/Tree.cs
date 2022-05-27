@@ -17,29 +17,29 @@ public class Tree : MeshTemplate
                 new TemplateGroup(
                     new Pyramid(
                         new Polygon(4, 2.5f)
-                            .Mod(new NoisePosition(0.3f, 0.5f, 0.3f)) as Polygon
+                            .Mod(new NoisePosition(new Vector3(0.3f, 0.5f, 0.3f), NoiseMode.DYNAMIC)) as Polygon
                         , 4)
-                        .Mod(new Translation(new Vector3(0, 2, 0)))
+                        .Mod(Translation.Y(2))
                         .Isolate(),
                     new Pyramid(
                         new Polygon(4, 2f)
-                            .Mod(new NoisePosition(0.2f, 0.4f, 0.2f)) as Polygon
+                            .Mod(new NoisePosition(new Vector3(0.2f, 0.4f, 0.2f), NoiseMode.DYNAMIC)) as Polygon
                         , 3.5f)
-                        .Mod(new Translation(new Vector3(0, 4, 0)))
+                        .Mod(Translation.Y(4))
                         .Isolate(),
                     new Pyramid(
                         new Polygon(4, 1.5f)
-                            .Mod(new NoisePosition(0.1f, 0.3f, 0.1f)) as Polygon
+                            .Mod(new NoisePosition(new Vector3(0.1f, 0.3f, 0.1f), NoiseMode.DYNAMIC)) as Polygon
                         , 2.5f)
-                        .Mod(new Translation(new Vector3(0, 6, 0)))
+                        .Mod(Translation.Y(6))
                         .Isolate(),
                     new PolyBox(new Polygon(7, 0.5f), 2)
-                        .Mod(new NoiseScale(0.5f, 0, 0.5f))
+                        .Mod(new NoiseScale(new Vector3(0.5f, 0, 0.5f), NoiseMode.STATIC))
                 )
-                    .Mod(new Scale(new Vector3(2, 2, 2)))
-                    .Mod(new NoiseScale(0.3f))
-                    .Mod(new Rotation(Random.Range(0f, 360f), Vector3.up))
-                    .Anim(new CoordinateMod(10f), UnityEngine.Random.Range(2f, 3f))
+                    .Mod(new Scale(2))
+                    .Mod(new NoiseScale(0.3f, NoiseMode.STATIC))
+                    .Mod(Rotation.Y(Seed.Range(0, 360)))
+                    .Anim(new CoordinateMod(10f), Random.Range(2f, 3f))
             );
     }
 }

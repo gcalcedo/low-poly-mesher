@@ -1,39 +1,70 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Noise for scale in 3D space.
+/// </summary>
 public class NoiseScale : MeshModification
 {
-    private readonly float strengthX;
-    private readonly float strengthY;
-    private readonly float strengthZ;
+    private readonly NoiseMode mode;
+    private Vector3 noise;
 
     /// <summary>
-    /// Applies <paramref name="strength"/> amount of noise to the X, Y and Z scale.
+    /// Noise for scale in 3D space.
     /// </summary>
-    /// <param name="strength">Strength of noise on every axis.</param>
-    public NoiseScale(float strength)
+    /// <param name="noise">The noise for the scale on each axis (X, Y, Z).</param>
+    public NoiseScale(Vector3 noise, NoiseMode mode)
     {
-        strengthX = UnityEngine.Random.Range(1 - strength, 1 + strength);
-        strengthY = UnityEngine.Random.Range(1 - strength, 1 + strength);
-        strengthZ = UnityEngine.Random.Range(1 - strength, 1 + strength);
+        this.mode = mode;
+        if (mode == NoiseMode.STATIC)
+        {
+            this.noise = new Vector3(
+                Seed.Range(1 - noise.x, 1 + noise.x),
+                Seed.Range(1 - noise.y, 1 + noise.y),
+                Seed.Range(1 - noise.z, 1 + noise.z));
+        }
+        else
+        {
+            this.noise = noise;
+        }
     }
 
     /// <summary>
-    /// Applies <paramref name="strengthX"/>, <paramref name="strengthY"/> and <paramref name="strengthZ"/> 
-    /// amount of noise to the X, Y and Z scale respectively.<br></br>
+    /// Noise for scale in 3D space.
     /// </summary>
-    /// <param name="strengthX">Strength of noise on the X axis.</param>
-    /// <param name="strengthY">Strength of noise on the Y axis.</param>
-    /// <param name="strengthZ">Strength of noise on the Z axis.</param>
-    public NoiseScale(float strengthX, float strengthY, float strengthZ)
-    {
-        this.strengthX = UnityEngine.Random.Range(1 - strengthX, 1 + strengthX);
-        this.strengthY = UnityEngine.Random.Range(1 - strengthY, 1 + strengthY);
-        this.strengthZ = UnityEngine.Random.Range(1 - strengthZ, 1 + strengthZ);
-    }
+    /// <param name="noise">The noise for the scale on every axis.</param>
+    public NoiseScale(float noise, NoiseMode mode) : this(new Vector3(noise, noise, noise), mode) { }
+
+    /// <summary>
+    /// Noise for scale in the <b>X</b> axis.
+    /// </summary>
+    /// <param name="noise">The magnitude of the noise for the scale.</param>
+    public static NoiseScale X(float noise, NoiseMode mode) { return new NoiseScale(new Vector3(noise, 0, 0), mode); }
+
+    /// <summary>
+    /// Noise for scale in the <b>Y</b> axis.
+    /// </summary>
+    /// <param name="noise">The magnitude of the noise for the scale.</param>
+    public static NoiseScale Y(float noise, NoiseMode mode) { return new NoiseScale(new Vector3(0, noise, 0), mode); }
+
+    /// <summary>
+    /// Noise for scale in the <b>Z</b> axis.
+    /// </summary>
+    /// <param name="noise">The magnitude of the noise for the scale.</param>
+    public static NoiseScale Z(float noise, NoiseMode mode) { return new NoiseScale(new Vector3(0, 0, noise), mode); }
 
     public override Func<Vector3, Vector3> GetModAction()
     {
-        return new Scale(new Vector3(strengthX, strengthY, strengthZ)).GetModAction();
+        if (mode == NoiseMode.STATIC)
+        {
+            return new Scale(new Vector3(noise.x, noise.y, noise.z)).GetModAction();
+        }
+        else
+        {
+            return new Scale(new Vector3(
+                Seed.Range(1 - noise.x, 1 + noise.x),
+                Seed.Range(1 - noise.y, 1 + noise.y),
+                Seed.Range(1 - noise.z, 1 + noise.z))).GetModAction();
+        }
     }
 }

@@ -36,7 +36,7 @@ public class PolyBox : MeshTemplate
         return VertexData.Build(
             basis.Copy(),
             basis.Copy()
-                .Mod(new Translation(new Vector3(0, height, 0)))
+                .Mod(Translation.Y(height))
             );
     }
 }

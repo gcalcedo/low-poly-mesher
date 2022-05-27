@@ -50,13 +50,17 @@ public class MeshData
     private Dictionary<Vector3, Vector3> transformations = new Dictionary<Vector3, Vector3>();
     private Dictionary<Vector3, float> durations = new Dictionary<Vector3, float>();
 
+    public void ClearAnimations()
+    {
+        tween.ForEach(t => {
+            t.Kill();
+        });
+        tween.Clear();
+    }
+
     public void LaunchAnimation()
     {
         if (!IsAnimated) return;
-
-        tween.ForEach(t => t.Kill());
-        tween.Clear();
-        DOTween.ClearCachedTweens();
 
         for (int i = 0; i < Vertices.Count; i++)
         {
@@ -79,10 +83,8 @@ public class MeshData
                () => Vertices[vertexID],
                (v) => Vertices[vertexID] = v,
                transform,
-               //Animation.target.GetModAction().Invoke(Vertices[vertexID]),
                duration
                )
-               //.SetRelative()
                .SetEase(Ease.InOutQuad)
                .SetLoops(-1, LoopType.Yoyo));
         }

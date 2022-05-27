@@ -22,7 +22,7 @@ public class Ground : MeshTemplate
 
         return VertexData.Build(
                 new Plane(sizeX, sizeZ, resolution)
-                    .Mod(new NoisePosition(size / 100f, size / 400f, size / 100f)),
+                    .Mod(new NoisePosition(new Vector3(size / 100f, size / 400f, size / 100f), NoiseMode.DYNAMIC)),
                 new Plane(sizeX, sizeZ, resolution)
                     .Mod(Translation.Y(-size / 10f))
             );

@@ -59,7 +59,9 @@ public class MeshTemplate
 
     public MeshTemplate Anim(MeshModification animation, float speed=-1)
     {
-        Animation = new MeshAnimation(animation, speed);
+        if (Animation is null) Animation = new MeshAnimation(new ModGroup(), speed);
+        Animation = new MeshAnimation(new ModGroup(Animation.target, animation), speed);
+        //Animation = new MeshAnimation(animation, speed);
         return this;
     }
 

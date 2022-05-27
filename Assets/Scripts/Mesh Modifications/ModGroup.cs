@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Groups any number of <see cref="MeshModification"/> into a single one.
+/// </summary>
 public class ModGroup : MeshModification
 {
     private readonly MeshModification[] group;

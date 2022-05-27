@@ -16,12 +16,6 @@ public class Pyramid : MeshTemplate
 
     public override IEnumerable<VertexData> Generate()
     {
-        //VertexData ps = VertexData.Build(
-        //    basis.Copy()
-        //    );
-        //ps.Set.Add(new Vector3(0, height, 0));
-
-        //return ps;
         return VertexData.Build(
             basis.Copy(),
             new Point(new Vector3(0, height, 0))

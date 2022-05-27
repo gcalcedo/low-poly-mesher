@@ -14,13 +14,13 @@ public class Plateau : MeshTemplate
     {
         return VertexData.Build(
             new Polygon(15, 10)
-                .Mod(new NoisePosition(1, 0, 1)),
+                .Mod(new NoisePosition(new Vector3(1, 0, 1), NoiseMode.DYNAMIC)),
             new Polygon(12, 10)
-                .Mod(new NoisePosition(1, 2, 1))
-                .Mod(new Translation(new Vector3(0, 5, 0))),
+                .Mod(new NoisePosition(new Vector3(1, 2, 1), NoiseMode.DYNAMIC))
+                .Mod(Translation.Y(5)),
             new Polygon(10, 10)
-                .Mod(new NoisePosition(1, 2, 1))
-                .Mod(new Translation(new Vector3(0, 10, 0)))
+                .Mod(new NoisePosition(new Vector3(1, 2, 1), NoiseMode.DYNAMIC))
+                .Mod(Translation.Y(10))
             );
     }
 }
