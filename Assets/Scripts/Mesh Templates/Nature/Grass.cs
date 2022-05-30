@@ -30,6 +30,7 @@ public class Grass : MeshTemplate
     {
         float sizeX = height / Random.Range(2f, 4f);
         float sizeZ = height / Random.Range(4f, 6f);
+        Vector3 swayVector = Seed.XZ();
 
         return new Pyramid(new Polygon(4, sizeX / 2), height)
             .Mod(Scale.Z(sizeZ / sizeX))
@@ -37,6 +38,6 @@ public class Grass : MeshTemplate
             .Mod(Translation.Z(height / 6f))
             .Mod(Rotation.Y(Seed.Range(0, 360)))
             .Isolate()
-            .Anim(new CoordinateMod(height));
+            .Anim(new GenericMod(p => p + swayVector * Easing.EaseInQuad(0, 1, p.y.Map(0, height, 0, 1))), Seed.Range(2f, 3f));
     }
 }

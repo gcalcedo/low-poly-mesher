@@ -57,7 +57,7 @@
 
 using UnityEngine;
 
-public static class EasingFunction
+public static class Easing
 {
     public enum Ease
     {

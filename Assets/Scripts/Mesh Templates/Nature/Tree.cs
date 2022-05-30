@@ -13,6 +13,8 @@ public class Tree : MeshTemplate
 
     public override IEnumerable<VertexData> Generate()
     {
+        Vector3 swayVector = Seed.XZ();
+
         return VertexData.Build(
                 new TemplateGroup(
                     new Pyramid(
@@ -33,13 +35,13 @@ public class Tree : MeshTemplate
                         , 2.5f)
                         .Mod(Translation.Y(6))
                         .Isolate(),
-                    new PolyBox(new Polygon(7, 0.5f), 2)
-                        .Mod(new NoiseScale(new Vector3(0.5f, 0, 0.5f), NoiseMode.STATIC))
+                    new PolyBox(new Polygon(7, 0.5f), 4)
+                        .Mod(new NoiseScale(new Vector3(0.5f, 0, 0.5f), NoiseMode.DYNAMIC))
                 )
                     .Mod(new Scale(2))
                     .Mod(new NoiseScale(0.3f, NoiseMode.STATIC))
                     .Mod(Rotation.Y(Seed.Range(0, 360)))
-                    .Anim(new CoordinateMod(10f), Random.Range(2f, 3f))
+                    .Anim(new GenericMod(p => p + swayVector *  Easing.EaseInQuad(0, 1, p.y.Map(0, 10f, 0, 1))), Seed.Range(2f, 3f))
             );
     }
 }

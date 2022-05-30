@@ -7,9 +7,9 @@ using UnityEngine;
 
 public static class MeshBuilder
 {
-    public static async Task<ICollection<MeshData>> BuildMeshData(MeshTemplate template)
+    public static async Task<ICollection<MeshPackage>> BuildMeshData(MeshTemplate template)
     {
-        List<MeshData> meshes = new List<MeshData>();
+        List<MeshPackage> meshes = new List<MeshPackage>();
         foreach(VertexData vd in VertexData.Build(template))
         {
             meshes.Add(await BuildMeshAsync(vd));
@@ -17,7 +17,7 @@ public static class MeshBuilder
         return meshes;
     }
 
-    private static async Task<MeshData> BuildMeshAsync(VertexData pointSet)
+    private static async Task<MeshPackage> BuildMeshAsync(VertexData pointSet)
     {
         List<string> stringPointSet = PolyIO.String(pointSet);
         List<Vector3> vertices = new List<Vector3>();
@@ -68,7 +68,7 @@ public static class MeshBuilder
             fullVertices.Add(vertices[t]);
         }
 
-        MeshData md = new MeshData(fullVertices.ToArray(), Enumerable.Range(0, triangles.Count).ToArray());
+        MeshPackage md = new MeshPackage(fullVertices.ToArray(), Enumerable.Range(0, triangles.Count).ToArray());
 
         md.Animation = pointSet.animation;
         return md;

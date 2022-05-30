@@ -5,9 +5,14 @@ using UnityEngine;
 using DG.Tweening;
 
 /// <summary>
-/// Represents relevant data for any 3D mesh.
+/// Holds data for any 3D mesh:
+/// <list type="bullet">
+/// <item>Vertices</item>
+/// <item>Triangles</item>
+/// <item>Animations</item>
+/// </list>
 /// </summary>
-public class MeshData
+public class MeshPackage
 {
     /// <summary>
     /// The vertices of the mesh.
@@ -19,17 +24,35 @@ public class MeshData
     /// </summary>
     public List<int> Triangles { get; private set; }
 
+    /// <summary>
+    /// <see langword="True"/> if this mesh has any <see cref="MeshAnimation"/> attached,
+    /// <see langword="false"/> otherwise.
+    /// </summary>
     public bool IsAnimated { get { return !(Animation is null); } }
+
+    /// <summary>
+    /// The animation of the mesh.
+    /// </summary>
     public MeshAnimation Animation { get; set; }
 
-    public MeshData()
+    /// <summary>
+    /// Builds an empty <see cref="MeshPackage"/>.
+    /// </summary>
+    public MeshPackage()
     {
         Vertices = new List<Vector3>();
         Triangles = new List<int>();
         Animation = null;
     }
 
-    public MeshData(IEnumerable<Vector3> vertices, IEnumerable<int> triangles, MeshAnimation animation = null)
+    /// <summary>
+    /// Builds a <see cref="MeshPackage"/> given a set of <paramref name="vertices"/> and <paramref name="triangles"/>.
+    /// An <paramref name="animation"/> can also be defined.
+    /// </summary>
+    /// <param name="vertices">The vertices of the mesh.</param>
+    /// <param name="triangles">The indices of the vertices that make up the triangles of the mesh.</param>
+    /// <param name="animation">The animation of the mesh.</param>
+    public MeshPackage(IEnumerable<Vector3> vertices, IEnumerable<int> triangles, MeshAnimation animation = null)
     {
         Vertices = new List<Vector3>(vertices);
         Triangles = new List<int>(triangles);
@@ -38,13 +61,7 @@ public class MeshData
         FixInsideOut();
     }
 
-    /// <summary>
-    /// Inverts the orientation of every triangle of the mesh.
-    /// </summary>
-    public void FlipFaces()
-    {
-        Triangles.Reverse();
-    }
+
 
     private List<Tween> tween = new List<Tween>();
     private Dictionary<Vector3, Vector3> transformations = new Dictionary<Vector3, Vector3>();
@@ -90,21 +107,17 @@ public class MeshData
         }
     }
 
-    private struct Triangle
+    /// <summary>
+    /// Inverts the orientation of every triangle of the mesh.
+    /// </summary>
+    public void FlipFaces()
     {
-        public Vector3 A, B, C;
-        public Vector3 center;
-        public Vector3 normal;
-
-        public Triangle(Vector3 A, Vector3 B, Vector3 C)
-        {
-            this.A = A;
-            this.B = B;
-            this.C = C;
-            center = (A + B + C) / 3;
-            normal = Vector3.Cross(B - A, C - A).normalized;
-        }
+        Triangles.Reverse();
     }
+
+    /// <summary>
+    /// Flips the faces of this mesh if they are facing inward.
+    /// </summary>
     public void FixInsideOut()
     {
         List<Triangle> tris = new List<Triangle>();

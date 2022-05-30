@@ -18,11 +18,11 @@ public abstract class MeshModification
 public enum NoiseMode
 {
     /// <summary>
-    /// Applies the same noise to every <b>vertex</b> of the <see cref="MeshTemplate"/>.
+    /// Applies the <b>SAME</b> noise to every <b>vertex</b> of the <see cref="MeshTemplate"/>.
     /// </summary>
     STATIC,
     /// <summary>
-    /// Applies a different noise to every <b>vertex</b> of the <see cref="MeshTemplate"/>.
+    /// Applies a <b>DIFFERENT</b> noise to every <b>vertex</b> of the <see cref="MeshTemplate"/>.
     /// </summary>
     DYNAMIC
 }

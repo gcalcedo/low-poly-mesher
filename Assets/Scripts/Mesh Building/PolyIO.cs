@@ -31,7 +31,7 @@ public static class PolyIO
         }
     }
 
-    public static async Task<MeshData> FromOFF(GameObject target)
+    public static async Task<MeshPackage> FromOFF(GameObject target)
     {
         using StreamReader file = new StreamReader(Application.persistentDataPath + "/" + target.GetInstanceID() + ".off");
         string fullFile = await file.ReadToEndAsync();
@@ -67,6 +67,6 @@ public static class PolyIO
             fullVertices.Add(vertices[t]);
         }
 
-        return new MeshData(fullVertices.ToArray(), Enumerable.Range(0, numberOfTriangles * 3).ToArray());
+        return new MeshPackage(fullVertices.ToArray(), Enumerable.Range(0, numberOfTriangles * 3).ToArray());
     }
 }

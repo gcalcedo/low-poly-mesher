@@ -15,13 +15,13 @@ public class MeshGenerator : MonoBehaviour
 
     private Mesh mesh;
     private MeshRenderer meshRenderer;
-    private List<MeshData> meshData;
+    private List<MeshPackage> meshData;
 
     private void Start()
     {
         mesh = GetComponent<MeshFilter>().mesh;
         meshRenderer = GetComponent<MeshRenderer>();
-        meshData = new List<MeshData>();
+        meshData = new List<MeshPackage>();
         GenerateMesh();
     }
     private void Update()
@@ -40,11 +40,11 @@ public class MeshGenerator : MonoBehaviour
     public async void GenerateMesh()
     {
         meshData.ForEach(md => md.ClearAnimations());
-        meshData = (List<MeshData>)await MeshBuilder.BuildMeshData(template);
+        meshData = (List<MeshPackage>)await MeshBuilder.BuildMeshData(template);
         mesh.LoadMeshData(meshData);
         meshRenderer.materials = Enumerable.Repeat(meshRenderer.materials[0], mesh.subMeshCount).ToArray();
 
-        foreach (MeshData md in meshData)
+        foreach (MeshPackage md in meshData)
         {
             md.LaunchAnimation();
         }
