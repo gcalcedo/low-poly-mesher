@@ -21,7 +21,7 @@ public class Rock : MeshTemplate
         this.height = height;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
         magnitude = height > size ? (int)(height / size) * 4 : (int)(size / height) * 2;
         order = 12;
@@ -29,14 +29,14 @@ public class Rock : MeshTemplate
         orderStep = order / magnitude;
         heightStep = height / magnitude;
 
-        return VertexData.Build(BuildRock());
+        return MeshPackage.Build(BuildRock());
     }
 
     private MeshTemplate[] BuildRock()
     {
         MeshTemplate[] rock = new MeshTemplate[magnitude];
 
-        for(int i = 0; i < magnitude; i++)
+        for (int i = 0; i < magnitude; i++)
         {
             rock[i] = RockPlane(i);
         }

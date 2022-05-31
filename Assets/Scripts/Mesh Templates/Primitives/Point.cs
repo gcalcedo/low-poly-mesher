@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -17,8 +18,8 @@ public class Point : MeshTemplate
         this.point = point;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
-        return new List<VertexData> { new VertexData(new List<Vector3> { point }) };
+        return new List<MeshPackage> { new MeshPackage(new List<Vector3> { point }, new List<int>()) };
     }
 }

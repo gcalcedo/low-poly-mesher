@@ -10,9 +10,9 @@ public class Plateau : MeshTemplate
     {
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
-        return VertexData.Build(
+        return MeshPackage.Build(
             new Polygon(15, 10)
                 .Mod(new NoisePosition(new Vector3(1, 0, 1), NoiseMode.DYNAMIC)),
             new Polygon(12, 10)

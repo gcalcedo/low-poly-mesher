@@ -16,11 +16,11 @@ public class WaterBed : MeshTemplate
         this.resolution = resolution;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
         float size = Mathf.Max(sizeX, sizeZ);
 
-        return VertexData.Build(
+        return MeshPackage.Build(
                 new Plane(sizeX, sizeZ, resolution)
                     .Mod(Translation.Y(-size / 10f)),
                 new Plane(sizeX, sizeZ, resolution)

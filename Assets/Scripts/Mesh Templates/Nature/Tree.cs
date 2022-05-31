@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,11 +10,11 @@ public class Tree : MeshTemplate
 
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
         Vector3 swayVector = Seed.XZ();
 
-        return VertexData.Build(
+        return MeshPackage.Build(
                 new TemplateGroup(
                     new Pyramid(
                         new Polygon(4, 2.5f)

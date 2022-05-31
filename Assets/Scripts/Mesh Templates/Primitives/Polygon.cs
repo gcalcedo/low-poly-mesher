@@ -20,7 +20,7 @@ public class Polygon : MeshTemplate
         this.size = size;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
         ICollection<Vector3> vertices = new List<Vector3>();
         float angleStep = 360f / order;
@@ -32,6 +32,6 @@ public class Polygon : MeshTemplate
             vertex = Quaternion.AngleAxis(angleStep, Vector3.up) * vertex;
         }
 
-        return new List<VertexData> { new VertexData(vertices) };
+        return new List<MeshPackage> { new MeshPackage(vertices, new List<int>()) };
     }
 }

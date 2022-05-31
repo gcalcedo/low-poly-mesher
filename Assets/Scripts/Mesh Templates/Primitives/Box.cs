@@ -22,9 +22,9 @@ public class Box : MeshTemplate
         this.sizeZ = sizeZ;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
-        return VertexData.Build(
+        return MeshPackage.Build(
             new Plane(sizeX, sizeZ),
             new Plane(sizeX, sizeZ)
                 .Mod(Translation.Y(sizeY))

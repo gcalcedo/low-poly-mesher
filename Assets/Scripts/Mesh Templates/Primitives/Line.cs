@@ -23,7 +23,7 @@ public class Line : MeshTemplate
         distanceStep = (to - from) / (order - 1);
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
         MeshTemplate[] points = new MeshTemplate[order];
         Vector3 point = from;
@@ -32,6 +32,6 @@ public class Line : MeshTemplate
             points[i] = new Point(point);
             point += distanceStep;
         }
-        return VertexData.Build(points);
+        return MeshPackage.Build(points);
     }
 }

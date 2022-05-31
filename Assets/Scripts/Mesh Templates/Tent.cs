@@ -11,9 +11,9 @@ public class Tent : MeshTemplate
 
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
-        return VertexData.Build(
+        return MeshPackage.Build(
                 new Pyramid(new Polygon(4, 2), 2)
                     .Mod(new Rotation(45, Vector3.up)),
                 new Pyramid(new Polygon(4, 1.25f), 1.25f)

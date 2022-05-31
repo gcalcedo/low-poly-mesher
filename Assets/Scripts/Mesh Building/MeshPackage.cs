@@ -36,7 +36,7 @@ public class MeshPackage
     public MeshAnimation Animation { get; set; }
 
     /// <summary>
-    /// Builds an empty <see cref="MeshPackage"/>.
+    /// Initializes an empty <see cref="MeshPackage"/>.
     /// </summary>
     public MeshPackage()
     {
@@ -46,8 +46,8 @@ public class MeshPackage
     }
 
     /// <summary>
-    /// Builds a <see cref="MeshPackage"/> given a set of <paramref name="vertices"/> and <paramref name="triangles"/>.
-    /// An <paramref name="animation"/> can also be defined.
+    /// Initializes a <see cref="MeshPackage"/> given a set of <paramref name="vertices"/>.
+    /// A set of <paramref name="triangles"/> and an <paramref name="animation"/> can also be defined.
     /// </summary>
     /// <param name="vertices">The vertices of the mesh.</param>
     /// <param name="triangles">The indices of the vertices that make up the triangles of the mesh.</param>
@@ -61,20 +61,64 @@ public class MeshPackage
         FixInsideOut();
     }
 
+    /// <summary>
+    /// Creates a set of <see cref="MeshPackage"/> from any number of <see cref="MeshTemplate"/>.
+    /// </summary>
+    /// <param name="group">The collections of <see cref="MeshTemplate"/> to be used to create the set of <see cref="MeshPackage"/>.</param>
+    public static IEnumerable<MeshPackage> Build(params MeshTemplate[] group)
+    {
+        List<MeshPackage> build = new List<MeshPackage> { new MeshPackage() };
+        foreach (MeshTemplate ms in group)
+        {
+            IEnumerable<MeshPackage> packages = ms.Generate();
+            for (int i = 0; i < packages.Count(); i++)
+            {
+                if (!(ms.Animation is null)) { packages.ElementAt(i).Animation = ms.Animation; }
 
+                foreach (MeshModification mod in ms.Mods)
+                {
+                    for (int j = 0; j < packages.ElementAt(i).Vertices.Count; j++)
+                    {
+                        packages.ElementAt(i).Vertices[j] = mod.GetModAction().Invoke(packages.ElementAt(i).Vertices[j]);
+                    }
+                }
 
-    private List<Tween> tween = new List<Tween>();
-    private Dictionary<Vector3, Vector3> transformations = new Dictionary<Vector3, Vector3>();
-    private Dictionary<Vector3, float> durations = new Dictionary<Vector3, float>();
+                if (i == 0 && !ms.Isolated)
+                {
+                    build[0].Animation = packages.ElementAt(i).Animation;
+                    build[0].Vertices.AddRange(packages.ElementAt(i).Vertices);
+                }
+                else
+                {
+                    build.Add(packages.ElementAt(i));
+                }
+            }
+        }
 
+        return build;
+    }
+
+    #region Animation
+
+    private readonly List<Tween> tween = new List<Tween>();
+    private readonly Dictionary<Vector3, Vector3> transformations = new Dictionary<Vector3, Vector3>();
+    private readonly Dictionary<Vector3, float> durations = new Dictionary<Vector3, float>();
+
+    /// <summary>
+    /// Stops ands clears the cache for every animation of this <see cref="MeshPackage"/>.
+    /// </summary>
     public void ClearAnimations()
     {
-        tween.ForEach(t => {
+        tween.ForEach(t =>
+        {
             t.Kill();
         });
         tween.Clear();
     }
 
+    /// <summary>
+    /// Stars the animation for this <see cref="MeshPackage"/>.
+    /// </summary>
     public void LaunchAnimation()
     {
         if (!IsAnimated) return;
@@ -84,8 +128,8 @@ public class MeshPackage
             int vertexID = i;
 
             Vector3 transform = Animation.target.GetModAction().Invoke(Vertices[vertexID]);
-            float duration = Animation.speed == -1 ? UnityEngine.Random.Range(1f, 3f) : Animation.speed;
-            if (transformations.ContainsKey(Vertices[vertexID]))    
+            float duration = Animation.speed == -1 ? Seed.Range(1f, 3f) : Animation.speed;
+            if (transformations.ContainsKey(Vertices[vertexID]))
             {
                 transform = transformations[Vertices[vertexID]];
                 duration = durations[Vertices[vertexID]];
@@ -107,6 +151,10 @@ public class MeshPackage
         }
     }
 
+    #endregion
+
+    #region Face Orientation
+
     /// <summary>
     /// Inverts the orientation of every triangle of the mesh.
     /// </summary>
@@ -121,7 +169,7 @@ public class MeshPackage
     public void FixInsideOut()
     {
         List<Triangle> tris = new List<Triangle>();
-        for(int i = 0; i < Triangles.Count; i += 3)
+        for (int i = 0; i < Triangles.Count; i += 3)
         {
             Vector3 p0 = Vertices[Triangles[i]];
             Vector3 p1 = Vertices[Triangles[i + 1]];
@@ -132,11 +180,11 @@ public class MeshPackage
         int inwardCount = 0;
         int outWardCount = 0;
 
-        foreach(Triangle t1 in tris)
+        foreach (Triangle t1 in tris)
         {
             int numberOfIntersections = 0;
 
-            foreach(Triangle t2 in tris)
+            foreach (Triangle t2 in tris)
             {
                 if (t1.A == t2.A && t1.B == t2.B && t1.C == t2.C) continue;
 
@@ -151,7 +199,7 @@ public class MeshPackage
                 float v = -Vector3.Dot(E1, DAO) * invdet;
                 float t = Vector3.Dot(AO, N) * invdet;
 
-                if(det >= 1e-6f && t >= 0.0f && u >= 0.0f && v >= 0.0f && (u + v) <= 1.0f)
+                if (det >= 1e-6f && t >= 0.0f && u >= 0.0f && v >= 0.0f && (u + v) <= 1.0f)
                 {
                     numberOfIntersections++;
                 }
@@ -159,12 +207,14 @@ public class MeshPackage
 
             if (numberOfIntersections % 2 == 0) outWardCount++; else inwardCount++;
 
-            if(inwardCount > 100 || outWardCount > 100) break;
+            if (inwardCount > 100 || outWardCount > 100) break;
         }
 
-        if(inwardCount > outWardCount)
+        if (inwardCount > outWardCount)
         {
             FlipFaces();
         }
     }
+
+    #endregion
 }

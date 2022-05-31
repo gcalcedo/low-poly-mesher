@@ -14,9 +14,9 @@ public class Pyramid : MeshTemplate
         this.height = height;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
-        return VertexData.Build(
+        return MeshPackage.Build(
             basis.Copy(),
             new Point(new Vector3(0, height, 0))
             );

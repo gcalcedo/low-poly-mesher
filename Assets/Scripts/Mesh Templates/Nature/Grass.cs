@@ -13,7 +13,7 @@ public class Grass : MeshTemplate
         this.height = height;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
         int leafCount = Random.Range(4, 8);
         MeshTemplate[] leafs = new MeshTemplate[leafCount];
@@ -23,7 +23,7 @@ public class Grass : MeshTemplate
             leafs[i] = Leaf();
         }
 
-        return VertexData.Build(leafs);
+        return MeshPackage.Build(leafs);
     }
 
     private MeshTemplate Leaf()

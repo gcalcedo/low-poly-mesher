@@ -20,7 +20,7 @@ public class MeshTemplate
             mods = new List<MeshModification>(template.Mods);
         }
 
-        public override IEnumerable<VertexData> Generate()
+        public override IEnumerable<MeshPackage> Generate()
         {
             return template. Generate();
         }
@@ -42,12 +42,12 @@ public class MeshTemplate
 
 
     /// <summary>
-    /// Defines the <see cref="VertexData"/> of this <see cref="MeshTemplate"/>.
+    /// Defines the <see cref="MeshPackage"/> of this <see cref="MeshTemplate"/>.
     /// </summary>
-    public virtual IEnumerable<VertexData> Generate() { return new List<VertexData>(); }
+    public virtual IEnumerable<MeshPackage> Generate() { return new List<MeshPackage>(); }
 
     /// <summary>
-    /// Adds a <see cref="MeshModification"/> to be applied to the generated <see cref="VertexData"/>.
+    /// Adds a <see cref="MeshModification"/> to be applied to the generated set of <see cref="MeshPackage"/>.
     /// </summary>
     /// <param name="modification"></param>
     /// <returns>A self reference to this <see cref="MeshTemplate"/>.</returns>
@@ -57,19 +57,32 @@ public class MeshTemplate
         return this;
     }
 
+    /// <summary>
+    /// Adds a <see cref="MeshAnimation"/> to be applied to the generated set of <see cref="MeshPackage"/>.
+    /// </summary>
+    /// <param name="animation"></param>
+    /// <param name="speed"></param>
+    /// <returns></returns>
     public MeshTemplate Anim(MeshModification animation, float speed=-1)
     {
         if (Animation is null) Animation = new MeshAnimation(new ModGroup(), speed);
         Animation = new MeshAnimation(new ModGroup(Animation.target, animation), speed);
-        //Animation = new MeshAnimation(animation, speed);
         return this;
     }
 
+    /// <summary>
+    /// <see langword="Returns"/> a copy of the current state of this <see cref="MeshTemplate"/>.
+    /// </summary>
     public MeshTemplate Copy()
     {
         return new TemplateCopy(this);
     }
 
+    /// <summary>
+    /// Isolates the <b>vertices</b> of this <see cref="MeshTemplate"/>. 
+    /// This will result in an independent mesh reconstruction of only these <b>vertices</b>.
+    /// </summary>
+    /// <returns></returns>
     public MeshTemplate Isolate()
     {
         Isolated = true;

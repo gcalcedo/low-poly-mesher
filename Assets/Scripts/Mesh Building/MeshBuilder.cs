@@ -7,19 +7,19 @@ using UnityEngine;
 
 public static class MeshBuilder
 {
-    public static async Task<ICollection<MeshPackage>> BuildMeshData(MeshTemplate template)
+    public static async Task<ICollection<MeshPackage>> BuildMeshTemplate(MeshTemplate template)
     {
         List<MeshPackage> meshes = new List<MeshPackage>();
-        foreach(VertexData vd in VertexData.Build(template))
+        foreach(MeshPackage package in MeshPackage.Build(template))
         {
-            meshes.Add(await BuildMeshAsync(vd));
+            meshes.Add(await BuildMeshAsync(package));
         }
         return meshes;
     }
 
-    private static async Task<MeshPackage> BuildMeshAsync(VertexData pointSet)
+    private static async Task<MeshPackage> BuildMeshAsync(MeshPackage package)
     {
-        List<string> stringPointSet = PolyIO.String(pointSet);
+        List<string> stringPointSet = PolyIO.String(package);
         List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();
      
@@ -68,10 +68,7 @@ public static class MeshBuilder
             fullVertices.Add(vertices[t]);
         }
 
-        MeshPackage md = new MeshPackage(fullVertices.ToArray(), Enumerable.Range(0, triangles.Count).ToArray());
-
-        md.Animation = pointSet.animation;
-        return md;
+        return new MeshPackage(fullVertices.ToArray(), Enumerable.Range(0, triangles.Count).ToArray(), package.Animation);
     }
 }
 

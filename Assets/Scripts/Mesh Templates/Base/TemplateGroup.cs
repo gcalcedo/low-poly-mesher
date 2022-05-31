@@ -13,8 +13,8 @@ public class TemplateGroup : MeshTemplate
         this.group = group;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
-        return VertexData.Build(group);
+        return MeshPackage.Build(group);
     }
 }

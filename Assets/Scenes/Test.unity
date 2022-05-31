@@ -484,17 +484,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Rock, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: TestObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Rock, ns: , asm: Assembly-CSharp}
-      data:
-        size: 4
-        height: 6
+      type: {class: TestObject, ns: , asm: Assembly-CSharp}
 --- !u!23 &1840855252
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -515,7 +512,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5c6c916e42991834d9d811169ae43387, type: 2}
+  - {fileID: 2100000, guid: c695e81935725fe469e95f14d5a5a277, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -31,9 +31,9 @@ public class PolyBox : MeshTemplate
         this.height = height;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
-        return VertexData.Build(
+        return MeshPackage.Build(
             basis.Copy(),
             basis.Copy()
                 .Mod(Translation.Y(height))

@@ -22,7 +22,7 @@ public class Plane : MeshTemplate
         this.resolution = resolution;
     }
 
-    override public IEnumerable<VertexData> Generate()
+    override public IEnumerable<MeshPackage> Generate()
     {
         Vector3 startCorner = new Vector3(-sizeX / 2, 0, -sizeZ / 2);
 
@@ -39,6 +39,6 @@ public class Plane : MeshTemplate
             startCorner += new Vector3(0, 0, stepZ);
         }
 
-        return VertexData.Build(plane);
+        return MeshPackage.Build(plane);
     }
 }

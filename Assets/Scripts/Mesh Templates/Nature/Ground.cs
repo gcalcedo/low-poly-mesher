@@ -16,11 +16,11 @@ public class Ground : MeshTemplate
         this.resolution = resolution;
     }
 
-    public override IEnumerable<VertexData> Generate()
+    public override IEnumerable<MeshPackage> Generate()
     {
         float size = Mathf.Max(sizeX, sizeZ);
 
-        return VertexData.Build(
+        return MeshPackage.Build(
                 new Plane(sizeX, sizeZ, resolution)
                     .Mod(new NoisePosition(new Vector3(size / 100f, size / 400f, size / 100f), NoiseMode.DYNAMIC)),
                 new Plane(sizeX, sizeZ, resolution)
