@@ -35,6 +35,8 @@ public class MeshPackage
     /// </summary>
     public MeshAnimation Animation { get; set; }
 
+    public Material Material { get; set; }
+
     /// <summary>
     /// Initializes an empty <see cref="MeshPackage"/>.
     /// </summary>
@@ -43,6 +45,7 @@ public class MeshPackage
         Vertices = new List<Vector3>();
         Triangles = new List<int>();
         Animation = null;
+        Material = null;
     }
 
     /// <summary>
@@ -52,11 +55,12 @@ public class MeshPackage
     /// <param name="vertices">The vertices of the mesh.</param>
     /// <param name="triangles">The indices of the vertices that make up the triangles of the mesh.</param>
     /// <param name="animation">The animation of the mesh.</param>
-    public MeshPackage(IEnumerable<Vector3> vertices, IEnumerable<int> triangles, MeshAnimation animation = null)
+    public MeshPackage(IEnumerable<Vector3> vertices, IEnumerable<int> triangles, MeshAnimation animation = null, Material material = null)
     {
         Vertices = new List<Vector3>(vertices);
         Triangles = new List<int>(triangles);
         Animation = animation;
+        Material = material;
 
         FixInsideOut();
     }
@@ -74,6 +78,7 @@ public class MeshPackage
             for (int i = 0; i < packages.Count(); i++)
             {
                 if (!(ms.Animation is null)) { packages.ElementAt(i).Animation = ms.Animation; }
+                if (!(ms.Material == null)) { packages.ElementAt(i).Material = ms.Material; }
 
                 foreach (MeshModification mod in ms.Mods)
                 {
@@ -85,8 +90,9 @@ public class MeshPackage
 
                 if (i == 0 && !ms.Isolated)
                 {
-                    build[0].Animation = packages.ElementAt(i).Animation;
                     build[0].Vertices.AddRange(packages.ElementAt(i).Vertices);
+                    build[0].Animation = packages.ElementAt(i).Animation;
+                    build[0].Material = packages.ElementAt(i).Material;
                 }
                 else
                 {
@@ -207,7 +213,7 @@ public class MeshPackage
 
             if (numberOfIntersections % 2 == 0) outWardCount++; else inwardCount++;
 
-            if (inwardCount > 100 || outWardCount > 100) break;
+            //if (inwardCount > 100 || outWardCount > 100) break;
         }
 
         if (inwardCount > outWardCount)

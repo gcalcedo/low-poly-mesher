@@ -18,11 +18,13 @@ public class MeshTemplate
             Isolated = template.Isolated;
             this.template = template;
             mods = new List<MeshModification>(template.Mods);
+            if (!(template.Animation is null))
+                Animation = new MeshAnimation(template.Animation.target, template.Animation.speed);
         }
 
         public override IEnumerable<MeshPackage> Generate()
         {
-            return template. Generate();
+            return template.Generate();
         }
     }
 
@@ -39,6 +41,8 @@ public class MeshTemplate
     }
 
     public MeshAnimation Animation;
+
+    public Material Material;
 
 
     /// <summary>
@@ -62,11 +66,38 @@ public class MeshTemplate
     /// </summary>
     /// <param name="animation"></param>
     /// <param name="speed"></param>
-    /// <returns></returns>
-    public MeshTemplate Anim(MeshModification animation, float speed=-1)
+    /// <returns>A self reference to this <see cref="MeshTemplate"/>.</returns>
+    public MeshTemplate Anim(MeshModification animation, float speed = -1)
     {
         if (Animation is null) Animation = new MeshAnimation(new ModGroup(), speed);
         Animation = new MeshAnimation(new ModGroup(Animation.target, animation), speed);
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the color properties for this <see cref="MeshTemplate"/>.
+    /// </summary>
+    /// <param name="hexColor">Diffuse component.</param>
+    /// <param name="metallic">Metallic component.</param>
+    /// <param name="smoothness">Smoothness component.</param>
+    /// <returns>A self reference to this <see cref="MeshTemplate"/>.</returns>
+    public MeshTemplate Color(string hexColor, float metallic = 0f, float smoothness = 0f, string hexEmission = "")
+    {
+        Material = new Material(Shader.Find("Standard"));
+
+        Material.color = Colorizer.FromHex(hexColor);
+        Material.SetFloat("_Metallic", metallic);
+        Material.SetFloat("_Glossiness", smoothness);
+        if (hexEmission != "")
+        {
+            Material.EnableKeyword("_EMISSION");
+            Material.SetColor("_EmissionColor", Colorizer.FromHex(hexEmission));
+        }
+
+        if (Material.color.a < 1)
+        {
+            StandardShaderUtils.ChangeRenderMode(Material, StandardShaderUtils.BlendMode.Transparent);
+        }
         return this;
     }
 
@@ -80,9 +111,9 @@ public class MeshTemplate
 
     /// <summary>
     /// Isolates the <b>vertices</b> of this <see cref="MeshTemplate"/>. 
-    /// This will result in an independent mesh reconstruction of only these <b>vertices</b>.
+    /// This will result in an independent mesh reconstruction of only this <see cref="MeshTemplate"/>.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A self reference to this <see cref="MeshTemplate"/>.</returns>
     public MeshTemplate Isolate()
     {
         Isolated = true;

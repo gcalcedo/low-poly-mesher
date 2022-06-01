@@ -5,31 +5,20 @@ using UnityEngine;
 [TemplatePath("Nature", typeof(Crystal))]
 public class Crystal : MeshTemplate
 {
-    public Polygon basis;
+    public float size;
     public float height;
 
-    public Crystal(Polygon basis, float height)
+    public Crystal(float size, float height)
     {
-        this.basis = basis;
+        this.size = size;
         this.height = height;
     }
 
     public override IEnumerable<MeshPackage> Generate()
     {
         return MeshPackage.Build(
-            basis.Copy()
-                .Mod(new Scale(new Vector3(0.7f, 0, 0.7f))),
-            basis.Copy()
-                .Mod(new Scale(new Vector3(0.8f, 0, 0.8f)))
-                .Mod(new NoisePosition(height * 0.05f, NoiseMode.DYNAMIC))
-                .Mod(Translation.Y(height * 0.3f)),
-            basis.Copy()
-                .Mod(new Scale(new Vector3(0.9f, 0, 0.9f)))
-                .Mod(new NoisePosition(height * 0.05f, NoiseMode.DYNAMIC))
-                .Mod(Translation.Y(height * 0.6f)),
-            new Pyramid(basis, height * 0.2f)
-                .Mod(new NoisePosition(height * 0.05f, NoiseMode.DYNAMIC))
-                .Mod(Translation.Y(height * 0.8f))
+                new Rock(size, height)
+                    .Color("#E81F3A", metallic: 1f, smoothness: 0.8f, hexEmission: "#6F1F1F")
             );
     }
 }

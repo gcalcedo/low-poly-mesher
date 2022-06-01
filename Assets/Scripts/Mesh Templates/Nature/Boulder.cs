@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[TemplatePath("Nature", typeof(Plateau))]
-public class Plateau : MeshTemplate
+[TemplatePath("Nature", typeof(Boulder))]
+public class Boulder : MeshTemplate
 {
-    public Plateau()
-    {
-    }
-
     public override IEnumerable<MeshPackage> Generate()
     {
         return MeshPackage.Build(
@@ -21,6 +17,7 @@ public class Plateau : MeshTemplate
             new Polygon(10, 10)
                 .Mod(new NoisePosition(new Vector3(1, 2, 1), NoiseMode.DYNAMIC))
                 .Mod(Translation.Y(10))
+                .Color("#CBAF8F")
             );
     }
 }

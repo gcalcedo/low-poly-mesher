@@ -20,7 +20,7 @@ public class Grass : MeshTemplate
 
         for (int i = 0; i < leafCount; i++)
         {
-            leafs[i] = Leaf();
+            leafs[i] = Leaf().Color("#9BD66C", smoothness:0f);
         }
 
         return MeshPackage.Build(leafs);

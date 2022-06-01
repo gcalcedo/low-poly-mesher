@@ -202,14 +202,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Plateau, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: Boulder, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Plateau, ns: , asm: Assembly-CSharp}
+      type: {class: Boulder, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &121559049
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -444,6 +446,7 @@ MonoBehaviour:
     00000000:
       type: {class: Ground, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         sizeX: 100
         sizeZ: 30
         resolution: 30
@@ -565,6 +568,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!23 &272738920
@@ -718,6 +722,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &338737833
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -816,15 +822,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Rock, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: Crystal, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Rock, ns: , asm: Assembly-CSharp}
+      type: {class: Crystal, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 8
 --- !u!33 &392839328
@@ -1061,6 +1068,7 @@ MonoBehaviour:
     00000000:
       type: {class: Ground, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         sizeX: 100
         sizeZ: 30
         resolution: 30
@@ -1164,7 +1172,6 @@ Transform:
   - {fileID: 1935475629}
   - {fileID: 1629970021}
   - {fileID: 2015843}
-  - {fileID: 1821092668}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1258,6 +1265,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!23 &753852429
@@ -1355,15 +1363,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Rock, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: Crystal, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Rock, ns: , asm: Assembly-CSharp}
+      type: {class: Crystal, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 8
 --- !u!33 &855028066
@@ -1563,6 +1572,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 4
 --- !u!23 &989011417
 MeshRenderer:
@@ -1666,14 +1676,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Plateau, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: Boulder, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Plateau, ns: , asm: Assembly-CSharp}
+      type: {class: Boulder, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1036365315
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1778,6 +1790,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &1051905568
 MeshRenderer:
@@ -1888,6 +1901,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &1060980793
 MeshRenderer:
@@ -1998,6 +2012,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!23 &1062780844
@@ -2103,6 +2118,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1064260602
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2209,6 +2226,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1096673569
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2307,15 +2326,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Rock, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: Crystal, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Rock, ns: , asm: Assembly-CSharp}
+      type: {class: Crystal, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 8
 --- !u!33 &1107893472
@@ -2381,7 +2401,7 @@ GameObject:
   - component: {fileID: 1284023692}
   - component: {fileID: 1284023691}
   m_Layer: 0
-  m_Name: Sea
+  m_Name: River
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2408,6 +2428,7 @@ MonoBehaviour:
     00000000:
       type: {class: WaterBed, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         sizeX: 95
         sizeZ: 45
         resolution: 20
@@ -2529,6 +2550,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!23 &1314750799
@@ -2612,14 +2634,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Plateau, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: Boulder, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Plateau, ns: , asm: Assembly-CSharp}
+      type: {class: Boulder, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1365151282
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2729,14 +2753,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Plateau, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: Boulder, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Plateau, ns: , asm: Assembly-CSharp}
+      type: {class: Boulder, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1444535815
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2841,6 +2867,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &1474269971
 MeshRenderer:
@@ -2928,14 +2955,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Plateau, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: Boulder, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Plateau, ns: , asm: Assembly-CSharp}
+      type: {class: Boulder, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1478295486
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3054,6 +3083,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!23 &1591905858
@@ -3137,15 +3167,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Ground, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: GroundDirt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Ground, ns: , asm: Assembly-CSharp}
+      type: {class: GroundDirt, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         sizeX: 102
         sizeZ: 102
         resolution: 30
@@ -3344,6 +3375,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1782383327
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3450,6 +3483,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1809249351
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3557,6 +3592,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &1810040517
 MeshRenderer:
@@ -3611,109 +3647,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810040514}
-  m_Mesh: {fileID: 0}
---- !u!1 &1821092667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1821092668}
-  - component: {fileID: 1821092671}
-  - component: {fileID: 1821092670}
-  - component: {fileID: 1821092669}
-  m_Layer: 0
-  m_Name: Tent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1821092668
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821092667}
-  m_LocalRotation: {x: -0, y: -0.17139421, z: -0, w: 0.98520255}
-  m_LocalPosition: {x: 18.9, y: -0.79999995, z: -3}
-  m_LocalScale: {x: 4, y: 4, z: 4}
-  m_Children: []
-  m_Father: {fileID: 596529719}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: -19.738, z: 0}
---- !u!114 &1821092669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821092667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateAssemblyName: Tent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-    PublicKeyToken=null
-  template:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: Tent, ns: , asm: Assembly-CSharp}
---- !u!23 &1821092670
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821092667}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ecbf1c6be27356447a57196ec18b9e71, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1821092671
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821092667}
   m_Mesh: {fileID: 0}
 --- !u!1 &1822247493
 GameObject:
@@ -3814,6 +3747,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1845759376
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3920,6 +3855,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1859313471
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4027,6 +3964,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!23 &1878089189
@@ -4124,15 +4062,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2794ea758acb2e743817ed796e54106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateAssemblyName: Rock, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  templateAssemblyName: Crystal, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   template:
     id: 0
   references:
     version: 1
     00000000:
-      type: {class: Rock, ns: , asm: Assembly-CSharp}
+      type: {class: Crystal, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 8
 --- !u!33 &1899127035
@@ -4366,6 +4305,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1937812911
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4472,6 +4413,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1942013554
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4578,6 +4521,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &1957712865
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4685,6 +4630,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &1987612599
 MeshRenderer:
@@ -4796,6 +4742,8 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: Tree, ns: , asm: Assembly-CSharp}
+      data:
+        Material: {fileID: 0}
 --- !u!23 &2017918616
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4903,6 +4851,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &2068502179
 MeshRenderer:

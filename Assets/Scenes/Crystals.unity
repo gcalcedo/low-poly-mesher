@@ -163,9 +163,8 @@ MonoBehaviour:
     00000000:
       type: {class: Crystal, ns: , asm: Assembly-CSharp}
       data:
-        basis:
-          order: 8
-          size: 3
+        Material: {fileID: 0}
+        size: 4
         height: 8
 --- !u!33 &5657939
 MeshFilter:
@@ -285,6 +284,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!33 &91473522
@@ -391,6 +391,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &133543719
 MeshRenderer:
@@ -496,6 +497,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &205333071
 MeshRenderer:
@@ -635,9 +637,8 @@ MonoBehaviour:
     00000000:
       type: {class: Crystal, ns: , asm: Assembly-CSharp}
       data:
-        basis:
-          order: 8
-          size: 3
+        Material: {fileID: 0}
+        size: 4
         height: 8
 --- !u!33 &456772040
 MeshFilter:
@@ -757,6 +758,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &458454417
 MeshRenderer:
@@ -898,6 +900,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!4 &561414836
@@ -1047,6 +1050,7 @@ MonoBehaviour:
     00000000:
       type: {class: Ground, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         sizeX: 1000
         sizeZ: 1000
         resolution: 50
@@ -1204,9 +1208,8 @@ MonoBehaviour:
     00000000:
       type: {class: Crystal, ns: , asm: Assembly-CSharp}
       data:
-        basis:
-          order: 8
-          size: 3
+        Material: {fileID: 0}
+        size: 4
         height: 8
 --- !u!4 &885197165
 Transform:
@@ -1262,9 +1265,8 @@ MonoBehaviour:
     00000000:
       type: {class: Crystal, ns: , asm: Assembly-CSharp}
       data:
-        basis:
-          order: 8
-          size: 3
+        Material: {fileID: 0}
+        size: 4
         height: 8
 --- !u!33 &946688698
 MeshFilter:
@@ -1564,6 +1566,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!4 &971368310
@@ -1670,6 +1673,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!4 &990298952
@@ -1740,6 +1744,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &1025850651
 MeshRenderer:
@@ -1881,6 +1886,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!4 &1058026120
@@ -1987,6 +1993,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!4 &1250104943
@@ -2093,6 +2100,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!4 &1434029125
@@ -2199,9 +2207,8 @@ MonoBehaviour:
     00000000:
       type: {class: Crystal, ns: , asm: Assembly-CSharp}
       data:
-        basis:
-          order: 8
-          size: 3
+        Material: {fileID: 0}
+        size: 4
         height: 8
 --- !u!4 &1546617158
 Transform:
@@ -2271,6 +2278,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &1652722532
 MeshRenderer:
@@ -2514,6 +2522,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &1719376718
 MeshRenderer:
@@ -2655,6 +2664,7 @@ MonoBehaviour:
     00000000:
       type: {class: Rock, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         size: 4
         height: 6
 --- !u!4 &1937296601
@@ -2725,6 +2735,7 @@ MonoBehaviour:
     00000000:
       type: {class: Grass, ns: , asm: Assembly-CSharp}
       data:
+        Material: {fileID: 0}
         height: 5
 --- !u!23 &2019114571
 MeshRenderer:

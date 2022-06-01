@@ -21,11 +21,14 @@ public class WaterBed : MeshTemplate
         float size = Mathf.Max(sizeX, sizeZ);
 
         return MeshPackage.Build(
-                new Plane(sizeX, sizeZ, resolution)
-                    .Mod(Translation.Y(-size / 10f)),
-                new Plane(sizeX, sizeZ, resolution)
-                    .Mod(new NoisePosition(new Vector3(size / 50f, 0, size / 50f), NoiseMode.DYNAMIC))
-                    .Anim(Translation.Y(size / 100f))
+                new TemplateGroup(
+                    new Plane(sizeX, sizeZ, resolution)
+                        .Mod(Translation.Y(-size / 10f)),
+                    new Plane(sizeX, sizeZ, resolution)
+                        .Mod(new NoisePosition(new Vector3(size / 50f, 0, size / 50f), NoiseMode.DYNAMIC))
+                        .Anim(Translation.Y(size / 100f))
+                    )
+                    .Color("#2497F580", smoothness:1f)
             );
     }
 }

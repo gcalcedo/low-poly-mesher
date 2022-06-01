@@ -68,7 +68,7 @@ public static class MeshBuilder
             fullVertices.Add(vertices[t]);
         }
 
-        return new MeshPackage(fullVertices.ToArray(), Enumerable.Range(0, triangles.Count).ToArray(), package.Animation);
+        return new MeshPackage(fullVertices.ToArray(), Enumerable.Range(0, triangles.Count).ToArray(), package.Animation, package.Material);
     }
 }
 

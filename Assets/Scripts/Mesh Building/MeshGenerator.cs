@@ -42,7 +42,7 @@ public class MeshGenerator : MonoBehaviour
         meshData.ForEach(md => md.ClearAnimations());
         meshData = (List<MeshPackage>)await MeshBuilder.BuildMeshTemplate(template);
         mesh.LoadMeshData(meshData);
-        meshRenderer.materials = Enumerable.Repeat(meshRenderer.materials[0], mesh.subMeshCount).ToArray();
+        meshRenderer.LoadRendererData(meshData);     
 
         foreach (MeshPackage md in meshData)
         {

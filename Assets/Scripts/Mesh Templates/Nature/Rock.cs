@@ -38,7 +38,7 @@ public class Rock : MeshTemplate
 
         for (int i = 0; i < magnitude; i++)
         {
-            rock[i] = RockPlane(i);
+            rock[i] = RockPlane(i).Color("#92A2E2", metallic:0f, smoothness:0f);
         }
 
         return rock;
